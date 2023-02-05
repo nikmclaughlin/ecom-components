@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export interface Props {
+	title: string;
+	price: number;
+	rating: number;
+	desc_long: string;
+	desc_short: string;
+	img: string;
+}
+
+let { title, price, rating, desc_long, desc_short, img } = Astro.props;
+
+title = "Product Name Here (2022)";
+price = 9.99;
+rating = 4.5;
+desc_long =
+	"Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia.";
+desc_short = "Horem ipsum dolor sit amet, consectetur adipiscing elit.";
+img = "../book_product.jpg";
+---
+
+<Layout title={title}>
+	<article class="grid grid-cols-two-thirds p-16">
+		<img src={img} class="col-span-2 border-2 border-primary" />
+		<div id="col-1" class="grid grid-rows-[min-content 1fr]">
+			<h1
+				class="text-4xl text-primary-content border-2 bg-primary border-primary flex justify-between items-center px-4"
+			>
+				<span class="text-left">{title}</span><span class="text-right"
+					>${price}</span
+				>
+			</h1>
+			<div class="text-lg border-2 border-primary text-base-content px-4 py-6">
+				{desc_long}
+			</div>
+		</div>
+		<div id="col-2">
+			<div
+				class="border-2 border-secondary bg-secondary text-secondary-content flex flex-col justify-evenly px-6 py-4"
+			>
+				<div class="text-xl p-4 text-center">{desc_short}</div>
+				<button
+					class="place-self-center text-xl text-accent-content border-2 border-primary bg-accent hover:bg-accent-focus w-fit px-6 py-3"
+					>ADD TO CART</button
+				>
+			</div>
+			<div class="border-2 border-primary p-4 col-start-2">
+				<div
+					id="reviewsFrame"
+					class="grid grid-cols-review items-center gap-2 p-8"
+				>
+					<div>5</div>
+					<div class="bg-secondary h-2"></div>
+					<div>4</div>
+					<div class="bg-secondary h-2"></div>
+					<div>3</div>
+					<div class="bg-secondary h-2"></div>
+					<div>2</div>
+					<div class="bg-secondary h-2"></div>
+					<div>1</div>
+					<div class="bg-secondary h-2"></div>
+				</div>
+			</div>
+		</div>
+	</article>
+</Layout>
