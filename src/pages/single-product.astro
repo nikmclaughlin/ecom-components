@@ -8,6 +8,8 @@
  * Add adaptive layout for smaller screens
  */
 import Layout from "../layouts/Layout.astro";
+import AddToCartForm from "../components/AddToCartForm";
+import type { CartItemDisplayInfo } from "../cartStore";
 
 export interface Props {
 	title: string;
@@ -18,26 +20,29 @@ export interface Props {
 	img: string;
 }
 
-let { title, price, rating, desc_long, desc_short, img } = Astro.props;
+// let { title, price, rating, desc_long, desc_short, img } = Astro.props;
 
-title = "Product Name Here (2022)";
-price = 9.99;
-rating = 4.5;
-desc_long =
+const desc_long =
 	"Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia.";
-desc_short = "Horem ipsum dolor sit amet, consectetur adipiscing elit.";
-img = "../book_product.jpg";
+const desc_short = "Horem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+const item: CartItemDisplayInfo = {
+	id: 0o1,
+	title: "Product Name Here (2022)",
+	price: 9.99,
+	imageSrc: "../book_product.jpg",
+};
 ---
 
-<Layout title={title}>
+<Layout title={item.title}>
 	<article class="grid grid-cols-two-thirds p-16">
-		<img src={img} class="col-span-2 border-2 border-primary" />
+		<img src={item.imageSrc} class="col-span-2 border-2 border-primary" />
 		<div id="col-1" class="grid grid-rows-[min-content 1fr]">
 			<h1
 				class="text-4xl text-primary-content border-2 bg-primary border-primary flex justify-between items-center px-4"
 			>
-				<span class="text-left">{title}</span><span class="text-right"
-					>${price}</span
+				<span class="text-left">{item.title}</span><span class="text-right"
+					>${item.price}</span
 				>
 			</h1>
 			<div class="text-lg border-2 border-primary text-base-content px-4 py-6">
@@ -49,10 +54,13 @@ img = "../book_product.jpg";
 				class="border-2 border-secondary bg-secondary text-secondary-content flex flex-col justify-evenly px-6 py-4"
 			>
 				<div class="text-xl p-4 text-center">{desc_short}</div>
-				<button
-					class="place-self-center text-xl text-accent-content border-2 border-primary bg-accent hover:bg-accent-focus w-fit px-6 py-3"
-					>ADD TO CART</button
-				>
+				<AddToCartForm item={item} client:load>
+					<button
+						type="submit"
+						class="text-xl text-accent-content border-2 border-primary bg-accent hover:bg-accent-focus w-fit px-6 py-3"
+						>ADD TO CART</button
+					>
+				</AddToCartForm>
 			</div>
 			<div class="border-2 border-primary p-4 col-start-2">
 				<div

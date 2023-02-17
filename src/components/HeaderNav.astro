@@ -1,4 +1,5 @@
 ---
+import { Cart } from "./Cart";
 const themes = [
 	"light",
 	"dark",
@@ -35,27 +36,36 @@ const themes = [
 
 <div class="navbar bg-primary">
 	<a class="btn btn-ghost normal-case text-xl">eCommerce!</a>
-	<div class="dropdown">
-		<label tabindex="0" class="btn m-1 hover:scale-x-105 bg-secondary"
-			>Theme</label
-		>
-		<ul
-			tabindex="0"
-			class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52 max-h-96"
-		>
-			{
-				themes.map((theme) => (
-					<li>
-						<a
-							data-set-theme={theme}
-							data-theme={theme}
-							class="bg-base-100 text-base-content font-bold bg-gradient-to-r from-bg-primary via-bg-secondary to-bg-accent"
-						>
-							{theme}
-						</a>
-					</li>
-				))
-			}
-		</ul>
+	<div class="flex justify-between flex-1 px-2">
+		<!-- left-aligned nav items -->
+		<div class="flex items-stretch">
+			<div class="dropdown dropdown-end">
+				<label tabindex="0" class="btn m-1 hover:scale-x-105 bg-secondary"
+					>Theme</label
+				>
+				<ul
+					tabindex="0"
+					class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-96"
+				>
+					{
+						themes.map((theme) => (
+							<li>
+								<a
+									data-set-theme={theme}
+									data-theme={theme}
+									class="bg-base-100 text-base-content font-bold"
+								>
+									{theme}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+		<!-- right-aligned nav items -->
+		<div class="flex items-stretch">
+			<Cart client:load />
+		</div>
 	</div>
 </div>
