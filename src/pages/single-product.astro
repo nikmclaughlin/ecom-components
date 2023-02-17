@@ -36,7 +36,11 @@ const item: CartItemDisplayInfo = {
 
 <Layout title={item.title}>
 	<article class="grid grid-cols-two-thirds p-16">
-		<img src={item.imageSrc} class="col-span-2 border-2 border-primary" />
+		<img
+			src={item.imageSrc}
+			alt={item.title}
+			class="col-span-2 border-2 border-primary"
+		/>
 		<div id="col-1" class="grid grid-rows-[min-content 1fr]">
 			<h1
 				class="text-4xl text-primary-content border-2 bg-primary border-primary flex justify-between items-center px-4"

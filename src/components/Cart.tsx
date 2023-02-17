@@ -14,7 +14,10 @@ export const Cart = () => {
 	return (
 		<>
 			<div class="dropdown dropdown-end">
-				<label tabindex="0" class="btn m-1 hover:scale-x-105 bg-secondary">
+				<label
+					tabindex="0"
+					class="btn m-1 hover:scale-x-105 bg-secondary text-secondary-content"
+				>
 					Cart
 				</label>
 				<ul
