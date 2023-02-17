@@ -6,6 +6,8 @@ type Props = {
 	children: ComponentChildren;
 };
 
+//TODO: add toast for item added
+
 export default function AddToCartForm({ item, children }: Props) {
 	function addToCart(e: Event) {
 		e.preventDefault();

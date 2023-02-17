@@ -1,9 +1,8 @@
 import { useStore } from "@nanostores/preact";
-import { cartItems } from "../cartStore";
+import { cartItems, removeCartItem } from "../cartStore";
 
 /**
  * TODO
- * Button on dropdown menu item to remove that item from cart
  * Items persist in cart between pages
  * Qty field in dropdown is editable
  *
@@ -11,6 +10,12 @@ import { cartItems } from "../cartStore";
 
 export const Cart = () => {
 	const $cartItems = useStore(cartItems);
+
+	const removeItem = (e: Event) => {
+		// console.log(e.target.getAttribute("data-itemID"));
+		e.preventDefault();
+		removeCartItem(e.target.getAttribute("data-itemID"));
+	};
 	return (
 		<>
 			<div class="dropdown dropdown-end">
@@ -31,11 +36,13 @@ export const Cart = () => {
 								<h3 class="text-base-content font-bold">{item.title}</h3>
 								<p className="text-base-content">${item.price}</p>
 								<p class="text-base-content">Qty {item.quantity}</p>
-								<button>x</button>
+								<button data-itemID={item.id} onClick={removeItem}>
+									x
+								</button>
 							</li>
 						))
 					) : (
-						<p class="text-base-content">Your cart is empty</p>
+						<p class="text-secondary-content">Your cart is empty</p>
 					)}
 				</ul>
 			</div>

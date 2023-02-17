@@ -14,6 +14,7 @@ export type CartItemDisplayInfo = Pick<CartItem, 'id' | 'title' | 'price' | 'ima
 
 export function addCartItem({id, title, price, imageSrc}: CartItemDisplayInfo){
 	const existingEntry = cartItems.get()[id];
+	// console.log(cartItems.get());
 	if( existingEntry ){
 		cartItems.setKey(id, {
 			...existingEntry,
@@ -26,3 +27,8 @@ export function addCartItem({id, title, price, imageSrc}: CartItemDisplayInfo){
 		);
 	}
 }
+
+export function removeCartItem(id: number){
+	// TODO: check if this is idiomatic for nanostores
+	cartItems.setKey( id, undefined );
+ }
