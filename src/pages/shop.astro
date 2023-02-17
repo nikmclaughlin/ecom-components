@@ -1,9 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ShopItemCard from "../components/ShopItemCard.astro";
+import { products } from "../components/productDB.astro";
+
+/**
+ * TODO
+ * Add pages for each product
+ * Shop products link to single pages
+ * Convert products to Content Collection
+ */
 ---
 
 <Layout title="Shop">
-	<main class="grid grid-cols-3">
-		<div></div>
+	<main class="flex flex-col items-center">
+		<h1 class="text-3xl text-base-content font-bold text-center p-6">Shop</h1>
+		<div class="w-3/4 grid grid-cols-3 gap-4">
+			{products.map((product) => <ShopItemCard id={product.id} />)}
+		</div>
 	</main>
 </Layout>

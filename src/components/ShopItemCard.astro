@@ -1,0 +1,32 @@
+---
+import AddToCartForm from "./AddToCartForm";
+import { products } from "../components/productDB.astro";
+const { id } = Astro.props;
+
+const displaying = products.find((product) => {
+	return id === product.id;
+});
+
+// TODO: Handle different image sizes better
+---
+
+<div
+	class="card card-bordered w-fill bg-base-100 shadow-lg hover:scale-105 transition"
+>
+	<figure class="aspect-square">
+		<img src={displaying?.imageSrc} />
+	</figure>
+	<div class="card-body">
+		<h2 class="card-title">{displaying?.title}</h2>
+		<p class="card-title justify-end">${displaying?.price}</p>
+		<div class="card-actions justify-center mt-8">
+			<AddToCartForm item={displaying} client:load>
+				<button
+					type="submit"
+					class="text-xl text-accent-content border-2 border-primary bg-accent hover:bg-accent-focus w-fit px-6 py-3"
+					>ADD TO CART</button
+				>
+			</AddToCartForm>
+		</div>
+	</div>
+</div>

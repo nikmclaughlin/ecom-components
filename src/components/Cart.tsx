@@ -3,6 +3,7 @@ import { cartItems, removeCartItem } from "../cartStore";
 
 /**
  * TODO
+ * Add toast for item removed
  * Items persist in cart between pages
  * Qty field in dropdown is editable
  *

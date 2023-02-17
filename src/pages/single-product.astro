@@ -1,9 +1,9 @@
 ---
 /** TODO:
+ * Accept product as prop? Convert to Dynamic route?
  * Improve Fonts
  * Add Image slider
  * Implement Reviews component
- * Add Cart handling (or at least trigger a little toast for now, actual implementation would be up to the integrating site)
  * Adaptive layout for smaller screens
  * Restrict layout for larger screensize
  */
@@ -11,14 +11,14 @@ import Layout from "../layouts/Layout.astro";
 import AddToCartForm from "../components/AddToCartForm";
 import type { CartItemDisplayInfo } from "../cartStore";
 
-export interface Props {
-	title: string;
-	price: number;
-	rating: number;
-	desc_long: string;
-	desc_short: string;
-	img: string;
-}
+// export interface Props {
+// 	title: string;
+// 	price: number;
+// 	rating: number;
+// 	desc_long: string;
+// 	desc_short: string;
+// 	img: string;
+// }
 
 // let { title, price, rating, desc_long, desc_short, img } = Astro.props;
 
