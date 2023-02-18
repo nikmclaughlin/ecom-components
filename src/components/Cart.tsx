@@ -1,9 +1,11 @@
 import { useStore } from "@nanostores/preact";
 import { cartItems, removeCartItem } from "../cartStore";
+import Toast from "./Toast";
 
 /**
  * TODO
  * Add toast for item removed
+ * Add cart quantity indicator badge
  * Items persist in cart between pages
  * Qty field in dropdown is editable
  *
@@ -15,7 +17,9 @@ export const Cart = () => {
 	const removeItem = (e: Event) => {
 		// console.log(e.target.getAttribute("data-itemID"));
 		e.preventDefault();
-		removeCartItem(e.target.getAttribute("data-itemID"));
+		// const removing = products e.target?.getAttribute("data-itemID")
+		removeCartItem(e.target?.getAttribute("data-itemID"));
+		// return <Toast type="info">Removed {removing.} from cart</Toast>
 	};
 	return (
 		<>
