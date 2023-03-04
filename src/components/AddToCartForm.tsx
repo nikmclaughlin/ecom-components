@@ -1,6 +1,6 @@
-import { ComponentChildren, render } from "preact";
+import type { ComponentChildren } from "preact";
 import { addCartItem, CartItemDisplayInfo } from "../cartStore";
-import Toast from "./Toast";
+import { addToast } from "./Toaster";
 
 type Props = {
 	item: CartItemDisplayInfo;
@@ -13,10 +13,7 @@ export default function AddToCartForm({ item, children }: Props) {
 	function addToCart(e: Event) {
 		e.preventDefault();
 		addCartItem(item);
-		const notify = (
-			<Toast type="success" message={`${item.title} is in your cart!`} />
-		);
-		render(notify, document.getElementById("toaster"));
+		addToast(item);
 	}
 	return (
 		<form onSubmit={addToCart} class="place-self-center">

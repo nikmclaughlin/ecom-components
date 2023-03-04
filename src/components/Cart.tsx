@@ -1,6 +1,5 @@
 import { useStore } from "@nanostores/preact";
 import { cartItems, removeCartItem } from "../cartStore";
-import Toast from "./Toast";
 
 /**
  * TODO
