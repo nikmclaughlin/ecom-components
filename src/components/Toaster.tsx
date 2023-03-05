@@ -1,5 +1,5 @@
 import { render } from "preact";
-import type { CartItemDisplayInfo } from "../cartStore";
+import type { CartItem } from "../cartStore";
 import Toast from "./Toast";
 
 // Tried to use Preact's useID() here but it broke during bundling 😕 Hours lost: ~6, lol
@@ -10,7 +10,7 @@ function removeToast() {
 	childId = Math.random().toString();
 }
 
-export function addToast(item: CartItemDisplayInfo) {
+export function addToast(item: CartItem) {
 	Promise.resolve().then(() =>
 		render(
 			<Toast

@@ -1,19 +1,29 @@
 import type { ComponentChildren } from "preact";
-import { addCartItem, CartItemDisplayInfo } from "../cartStore";
+import type { ShopItem } from "../components/productDB";
+import { addCartItem, CartItem } from "../cartStore";
 import { addToast } from "./Toaster";
 
 type Props = {
-	item: CartItemDisplayInfo;
+	item: ShopItem;
 	children: ComponentChildren;
 };
 
-//TODO: add toast for item added
+function createCartItem(product: ShopItem): CartItem {
+	return {
+		id: product.id,
+		title: product.title,
+		price: product.price,
+		imageSrc: product.imageSrc,
+		quantity: 1,
+	};
+}
 
 export default function AddToCartForm({ item, children }: Props) {
 	function addToCart(e: Event) {
 		e.preventDefault();
-		addCartItem(item);
-		addToast(item);
+		const toCart = createCartItem(item);
+		addCartItem(toCart);
+		addToast(toCart);
 	}
 	return (
 		<form onSubmit={addToCart} class="place-self-center">

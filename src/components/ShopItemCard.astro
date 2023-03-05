@@ -1,6 +1,6 @@
 ---
 import AddToCartForm from "./AddToCartForm";
-import { products } from "../components/productDB.astro";
+import { products } from "../components/productDB";
 const { id } = Astro.props;
 
 const displaying = products.find((product) => {
@@ -13,8 +13,10 @@ const displaying = products.find((product) => {
 <div
 	class="card card-bordered w-fill bg-base-100 shadow-lg hover:scale-105 transition"
 >
-	<figure class="aspect-square">
-		<img src={displaying?.imageSrc} />
+	<figure>
+		<a href={`/products/${displaying?.slug}`}>
+			<img src={displaying?.imageSrc} />
+		</a>
 	</figure>
 	<div class="card-body">
 		<h2 class="card-title">{displaying?.title}</h2>

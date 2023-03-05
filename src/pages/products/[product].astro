@@ -1,0 +1,87 @@
+---
+/** TODO:
+ * Improve Fonts
+ * Add Image slider
+ * Implement Reviews component
+ * Adaptive layout for smaller screens
+ * Restrict layout for larger screensize
+ */
+import Layout from "../../layouts/Layout.astro";
+import { products } from "../../components/productDB";
+import AddToCartForm from "../../components/AddToCartForm";
+
+// Create page for each unique product
+export async function getStaticPaths() {
+	const uniqueProducts = [...new Set(products.map((product) => product.slug))];
+
+	return uniqueProducts.map((product) => {
+		return {
+			params: { product },
+		};
+	});
+}
+
+const { product } = Astro.params;
+
+// Get product from slug
+const productData = products.find((item) => {
+	return product === item.slug;
+});
+---
+
+<Layout title={productData?.title}>
+	<a
+		class="text-lg text-base-content m-4 absolute hover:text-primary-focus"
+		href="/shop/">< Back to Shop</a
+	>
+	<article class="grid grid-cols-two-thirds p-16">
+		<img
+			src={productData?.imageSrc}
+			alt={productData?.title}
+			class="col-span-2 border-2 border-primary max-h-min"
+		/>
+		<div id="col-1" class="grid grid-rows-[min-content 1fr]">
+			<h1
+				class="text-4xl text-primary-content border-2 bg-primary border-primary flex justify-between displayings-center px-4"
+			>
+				<span class="text-left">{productData?.title}</span><span
+					class="text-right">${productData?.price}</span
+				>
+			</h1>
+			<div class="text-lg border-2 border-primary text-base-content px-4 py-6">
+				{productData?.desc_long}
+			</div>
+		</div>
+		<div id="col-2">
+			<div
+				class="border-2 border-secondary bg-secondary text-secondary-content flex flex-col justify-evenly px-6 py-4"
+			>
+				<div class="text-xl p-4 text-center">{productData?.desc_short}</div>
+				<AddToCartForm item={productData} client:load>
+					<button
+						type="submit"
+						class="text-xl text-accent-content border-2 border-primary bg-accent hover:bg-accent-focus w-fit px-6 py-3"
+						>ADD TO CART</button
+					>
+				</AddToCartForm>
+			</div>
+			<div class="border-2 border-primary p-4 col-start-2">
+				<div
+					id="reviewsFrame"
+					class="grid grid-cols-review displayings-center gap-2 p-8"
+				>
+					<div>5</div>
+					<div class="bg-secondary h-2"></div>
+					<div>4</div>
+					<div class="bg-secondary h-2"></div>
+					<div>3</div>
+					<div class="bg-secondary h-2"></div>
+					<div>2</div>
+					<div class="bg-secondary h-2"></div>
+					<div>1</div>
+					<div class="bg-secondary h-2"></div>
+				</div>
+			</div>
+		</div>
+	</article>
+</Layout>

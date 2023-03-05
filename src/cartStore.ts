@@ -1,5 +1,7 @@
 import { map } from "nanostores";
 
+// TODO: Persist cart across pages
+
 export type CartItem = {
 	id: number;
 	title: string;
@@ -10,12 +12,10 @@ export type CartItem = {
 
 export const cartItems = map<Record<number, CartItem>>({});
 
-export type CartItemDisplayInfo = Pick<CartItem, 'id' | 'title' | 'price' | 'imageSrc'>;
-
-export function addCartItem({id, title, price, imageSrc}: CartItemDisplayInfo){
+export function addCartItem({id, title, price, imageSrc}: CartItem){
 	const existingEntry = cartItems.get()[id];
 	// console.log(cartItems.get());
-	if( existingEntry ){
+	if( existingEntry && existingEntry.quantity ){
 		cartItems.setKey(id, {
 			...existingEntry,
 			quantity: existingEntry.quantity + 1

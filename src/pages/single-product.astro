@@ -1,15 +1,11 @@
 ---
-/** TODO:
- * Accept product as prop? Convert to Dynamic route?
- * Improve Fonts
- * Add Image slider
- * Implement Reviews component
- * Adaptive layout for smaller screens
- * Restrict layout for larger screensize
- */
+/**
+ * MIGRATED TO DYNAMIC ROUTE
+ * @see /products/[product].astro
+ * */
 import Layout from "../layouts/Layout.astro";
 import AddToCartForm from "../components/AddToCartForm";
-import type { CartItemDisplayInfo } from "../cartStore";
+import type { CartItem } from "../cartStore";
 
 // export interface Props {
 // 	title: string;
@@ -26,7 +22,7 @@ const desc_long =
 	"Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia.";
 const desc_short = "Horem ipsum dolor sit amet, consectetur adipiscing elit.";
 
-const item: CartItemDisplayInfo = {
+const item: CartItem = {
 	id: 0o1,
 	title: "Product Name Here (2022)",
 	price: 9.99,
