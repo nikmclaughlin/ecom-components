@@ -10,7 +10,7 @@ type Props = {
 
 function createCartItem(product: ShopItem): CartItem {
 	return {
-		id: product.id,
+		slug: product.slug,
 		title: product.title,
 		price: product.price,
 		imageSrc: product.imageSrc,

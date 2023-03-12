@@ -17,7 +17,7 @@ export const Cart = () => {
 		// console.log(e.target.getAttribute("data-itemID"));
 		e.preventDefault();
 		// const removing = products e.target?.getAttribute("data-itemID")
-		removeCartItem(e.target?.getAttribute("data-itemID"));
+		removeCartItem(e.target?.getAttribute("data-itemSlug"));
 		// return <Toast type="info">Removed {removing.} from cart</Toast>
 	};
 	return (
@@ -40,7 +40,7 @@ export const Cart = () => {
 								<h3 class="text-base-content font-bold">{item.title}</h3>
 								<p className="text-base-content">${item.price}</p>
 								<p class="text-base-content">Qty {item.quantity}</p>
-								<button data-itemID={item.id} onClick={removeItem}>
+								<button data-itemSlug={item.slug} onClick={removeItem}>
 									x
 								</button>
 							</li>
